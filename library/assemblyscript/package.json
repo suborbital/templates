@@ -1,6 +1,6 @@
 {
-  "name": "@acmeco/acmeco",
-  "version": "0.10.0",
+  "name": "@suborbital/acmeco",
+  "version": "0.1.0",
   "types": "assembly/index.ts",
   "description": "acmeco's Runnable API for AssemblyScript",
   "main": "assembly/index.ts",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/acmeco/function-templates.git"
+    "url": "git+ssh://git@github.com/suborbital/function-templates.git"
   },
   "keywords": [
     "webassembly",
@@ -22,12 +22,12 @@
     "assemblyscript",
     "typescript"
   ],
-  "author": "acmeco",
+  "author": "suborbital",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/acmeco/function-templates/issues"
+    "url": "https://github.com/suborbital/function-templates/issues"
   },
-  "homepage": "https://github.com/acmeco/function-templates#readme",
+  "homepage": "https://github.com/suborbital/function-templates#readme",
   "dependencies": {
     "@assemblyscript/loader": "^0.19",
     "@suborbital/suborbital": "0.10.0"
