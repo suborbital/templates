@@ -3,7 +3,7 @@ import { logInfo } from "@suborbital/suborbital"
 export function run(input: ArrayBuffer): ArrayBuffer {
 	let inStr = String.UTF8.decode(input)
   
-	let out = "hey there, " + inStr
+	let out = "HEY THERE, " + inStr
 
 	logInfo(out)
 
