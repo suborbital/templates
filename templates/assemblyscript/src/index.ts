@@ -1,5 +1,5 @@
 // DO NOT EDIT; generated file
-import { return_result, return_abort, toFFI, fromFFI, getIdent, setIdent } from "@suborbital/suborbital";
+import { return_result, return_abort, toFFI, fromFFI, getIdent, setIdent } from "@rocketshipinc/rocketship";
 import { custom_run } from "./custom"
 
 export function run_e(ptr: usize, size: i32, ident: i32): void {

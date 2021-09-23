@@ -1,5 +1,5 @@
 {
-  "name": "@suborbital/acmeco",
+  "name": "@rocketshipinc/rocketship",
   "version": "0.1.0",
   "types": "assembly/index.ts",
   "description": "acmeco's Runnable API for AssemblyScript",
@@ -30,7 +30,8 @@
   "homepage": "https://github.com/suborbital/function-templates#readme",
   "dependencies": {
     "@assemblyscript/loader": "^0.19",
-    "@suborbital/suborbital": "0.10.0"
+    "@suborbital/suborbital": "0.10.0",
+    "assemblyscript-json": "^1.1.0"
   },
   "devDependencies": {
     "assemblyscript": "^0.19"

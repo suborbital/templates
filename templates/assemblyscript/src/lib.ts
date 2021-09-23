@@ -1,6 +1,7 @@
-import { logInfo } from "@suborbital/suborbital"
+import { JSON } from "assemblyscript-json";
+import { logInfo } from "@rocketshipinc/rocketship"
 
-export function run(input: ArrayBuffer): ArrayBuffer {
+export function run(input: JSON.Obj): ArrayBuffer {
 	let inStr = String.UTF8.decode(input)
   
 	let out = "HEY THERE, " + inStr
