@@ -1,0 +1,16 @@
+package main
+
+import (
+	suborbital "github.com/suborbital/libtinygo" 
+)
+
+type {{ .NameCamel }} struct{}
+
+func (h {{ .NameCamel }}) Run(input []byte) []byte {
+	return []byte("Hello, " + string(input))
+}
+
+// do not edit below 
+func main() {
+	suborbital.RUNNABLE = {{ .NameCamel }}{}
+}
