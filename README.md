@@ -1,6 +1,6 @@
 # Runnable Templates
 
-This repo is the basis for creating your own Runnable templates for Reactr, Atmo, and Flight Deck. TypeScript/AssemblyScript and Rust are the only supported languages for now.
+This repo is the basis for creating your own Runnable templates for Reactr, Atmo, and Suborbital Compute. TypeScript/AssemblyScript, Rust, and Swift are supported.
 
 To get started, fork this repo into your own organization. It must be public.
 
