@@ -1,16 +1,16 @@
 package main
 
 import (
-	suborbital "github.com/suborbital/libtinygo" 
+	"go.suborbital.dev/runnable" 
 )
 
 type {{ .NameCamel }} struct{}
 
-func (h {{ .NameCamel }}) Run(input []byte) []byte {
-	return []byte("Hello, " + string(input))
+func (h {{ .NameCamel }}) Run(input []byte) ([]byte, error) {
+	return []byte("Hello, " + string(input)), nil
 }
 
-// do not edit below 
+// initialize runnable, do not edit //
 func main() {
-	suborbital.RUNNABLE = {{ .NameCamel }}{}
+	runnable.Use({{ .NameCamel }}{})
 }
