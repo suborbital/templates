@@ -1,9 +1,7 @@
 module vendor.suborbital.network/{{ .Name }}
 
-replace go.suborbital.dev/runnable => /root/reactr/api/tinygo
-
 require (
-	go.suborbital.dev/runnable v1.0.0
+	github.com/suborbital/reactr v{{ .APIVersion }}
 )
 
 go 1.17
