@@ -4,19 +4,19 @@ import { JSON } from "json-as"
 const ACTION_BAN_USER: ActionType = {action: "ban"}
 const POST_STATUS_DELETED: PostStatus = {status: "deleted"}
 
-export function run(post: Post): Array<Action> {  
+export function run(post: Post): Action {  
 	let msg = "got post: " + post.title + ", " + post.post_id + ", " + post.author.name
 
 	logInfo(msg)
 
 	const actions = new Array<Action>()
 
-	actions.push({
+	const action: Action = {
 		action_type: ACTION_BAN_USER,
 		post_status: POST_STATUS_DELETED,
-	})
+	}
 
-	return actions
+	return action
 }
 
 //ts-ignore
