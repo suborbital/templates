@@ -3,37 +3,43 @@ import { logInfo } from "@suborbital/suborbital"
 const ACTION_BAN_USER: ActionType = {action: "ban"}
 const POST_STATUS_DELETED: PostStatus = {status: "deleted"}
 
-//@json
+//ts-ignore
+@json
 export class Post {
-	post_id: string
+	postid: string
 	title: string
 	body: string
-	created_at: string
+	createdat: string
 	upvotes: i32
-	downvote: i32
-	subreddit: Subreddit
-	author: Author
+	downvotes: i32
+	// subreddit: Subreddit
+	// author: Author
 }
 
-//@json
+//ts-ignore
+@json
 export class Author {
-	user_id: string
+	userid: string
 	name: string
 	karma: i32
 }
 
-//@json
+//ts-ignore
+@json
 export class Subreddit {
-	subreddit_id: string
-	subreddit_name: string
+	subredditid: string
+	subredditname: string
  }
 
-//@json
+ //ts-ignore
+@json
 export class Action {
-  action_type: ActionType
-  post_status: PostStatus
+  actiontype: ActionType
+  poststatus: PostStatus
 }
 
+//ts-ignore
+@json
 export class EmailAction {
 	action: Action
 	to: string
@@ -41,24 +47,26 @@ export class EmailAction {
 	body: string
 }
 
-//@json
+//ts-ignore
+@json
 export class ActionType {
 	action: string
 }
 
-//@json
+//ts-ignore
+@json
 export class PostStatus {
 	status: string
 }
 
 export function run(post: Post): Action {  
-	let msg = "got post from, " + post.author.name
+	let msg = "got post: " + post.title
 
 	logInfo(msg)
 
 	const action: Action = {
-		action_type: ACTION_BAN_USER,
-		post_status: POST_STATUS_DELETED,
+		actiontype: ACTION_BAN_USER,
+		poststatus: POST_STATUS_DELETED,
 	}
 
 	return action
