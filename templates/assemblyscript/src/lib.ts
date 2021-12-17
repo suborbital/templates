@@ -1,25 +1,41 @@
 import { logInfo } from "@suborbital/suborbital"
+import { JSON } from "json-as"
 
 const ACTION_BAN_USER: ActionType = {action: "ban"}
 const POST_STATUS_DELETED: PostStatus = {status: "deleted"}
 
+export function run(post: Post): Array<Action> {  
+	let msg = "got post: " + post.title + ", " + post.post_id + ", " + post.author.name
+
+	logInfo(msg)
+
+	const actions = new Array<Action>()
+
+	actions.push({
+		action_type: ACTION_BAN_USER,
+		post_status: POST_STATUS_DELETED,
+	})
+
+	return actions
+}
+
 //ts-ignore
 @json
 export class Post {
-	postid: string
+	post_id: string
 	title: string
 	body: string
-	createdat: string
+	created_at: string
 	upvotes: i32
 	downvotes: i32
-	// subreddit: Subreddit
-	// author: Author
+	subreddit: Subreddit
+	author: Author
 }
 
 //ts-ignore
 @json
 export class Author {
-	userid: string
+	user_id: string
 	name: string
 	karma: i32
 }
@@ -27,15 +43,15 @@ export class Author {
 //ts-ignore
 @json
 export class Subreddit {
-	subredditid: string
-	subredditname: string
+	subreddit_id: string
+	subreddit_name: string
  }
 
  //ts-ignore
 @json
 export class Action {
-  actiontype: ActionType
-  poststatus: PostStatus
+  action_type: ActionType
+  post_status: PostStatus
 }
 
 //ts-ignore
@@ -57,17 +73,4 @@ export class ActionType {
 @json
 export class PostStatus {
 	status: string
-}
-
-export function run(post: Post): Action {  
-	let msg = "got post: " + post.title
-
-	logInfo(msg)
-
-	const action: Action = {
-		actiontype: ACTION_BAN_USER,
-		poststatus: POST_STATUS_DELETED,
-	}
-
-	return action
 }

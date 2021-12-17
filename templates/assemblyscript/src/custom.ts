@@ -12,7 +12,7 @@ export function custom_run(input: ArrayBuffer): ArrayBuffer {
 	const post = JSON.parse<Post>(String.UTF8.decode(input))
 	logInfo("got here 2")
 	
-	const action = run(post)
+	const actions = run(post)
 	logInfo("got here 3")
 	
 	const output = JSON.stringify(action)
