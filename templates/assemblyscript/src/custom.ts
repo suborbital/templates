@@ -15,7 +15,7 @@ export function custom_run(input: ArrayBuffer): ArrayBuffer {
 	const actions = run(post)
 	logInfo("got here 3")
 	
-	const output = JSON.stringify(action)
+	const output = JSON.stringify(actions)
 	logInfo("got here 4")
 
 	return String.UTF8.encode(output)
