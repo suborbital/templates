@@ -11,5 +11,5 @@ export function custom_run(input: ArrayBuffer): ArrayBuffer {
 
 	const output = JSON.stringify(action)
 
-	return output
+	return String.UTF8.encode(output)
 }
