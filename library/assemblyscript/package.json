@@ -30,7 +30,7 @@
   "homepage": "https://github.com/suborbital/function-templates#readme",
   "dependencies": {
     "@assemblyscript/loader": "^0.19",
-    "@suborbital/suborbital": "0.10.0"
+    "@suborbital/suborbital": "0.14.0"
   },
   "devDependencies": {
     "assemblyscript": "^0.19"
