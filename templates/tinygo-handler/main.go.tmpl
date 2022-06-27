@@ -23,7 +23,7 @@ func (h httpHandler) Run(input []byte) ([]byte, error) {
 		responseCode: 200,
 	}
 
-	Handle(request, writer)
+	Handle{{ .NameCamel }}(request, writer)
 
 	if writer.responseCode > 299 {
 		return nil, fmt.Errorf("failed with status code: %d, message: %s", writer.responseCode, writer.buffer.String())
