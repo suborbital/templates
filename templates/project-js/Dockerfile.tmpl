@@ -1,0 +1,9 @@
+FROM suborbital/velo:dev as velo
+
+FROM nodejs:latest
+
+COPY --from=velo /usr/local/bin/velo /usr/local/bin/velo
+
+COPY . .
+
+ENTRYPOINT [ "npm", "run", "start" ]
