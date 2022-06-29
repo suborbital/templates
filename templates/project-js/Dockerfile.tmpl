@@ -1,8 +1,10 @@
 FROM suborbital/velo:dev as velo
+FROM suborbital/sat:dev as sat
 
-FROM nodejs:latest
+FROM node:latest
 
 COPY --from=velo /usr/local/bin/velo /usr/local/bin/velo
+COPY --from=sat /usr/local/bin/sat /usr/local/bin/sat
 
 COPY . .
 
