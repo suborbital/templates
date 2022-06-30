@@ -1,5 +1,11 @@
-FROM suborbital/atmo:v{{ .AtmoVersion }}
+FROM suborbital/velo:vmain as velo
+FROM suborbital/sat:vmain as sat
 
-COPY ./runnables.wasm.zip .
+FROM node:latest
 
-ENTRYPOINT [ "atmo" ]
+COPY --from=velo /usr/local/bin/velo /usr/local/bin/velo
+COPY --from=sat /usr/local/bin/sat /usr/local/bin/sat
+
+COPY . .
+
+ENTRYPOINT [ "npm", "run", "start" ]
