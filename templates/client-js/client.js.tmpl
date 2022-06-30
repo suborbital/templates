@@ -1,6 +1,6 @@
 {{range .Endpoints}}
 export async function {{ .NameCamel }}({{ if .IsPost }}input{{ end }}) {
-	return await fetch(window.location.host + "{{ .URI }}", {method: "{{ .Method }}"{{ if .IsPost }}, body: input{{end}}})
+	return await fetch(window.location.protocol + "//" + window.location.host + "{{ .URI }}", {method: "{{ .Method }}"{{ if .IsPost }}, body: input{{end}}})
 }
 
 
