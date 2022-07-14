@@ -1,0 +1,16 @@
+[template]
+type = "module"
+name = "category/template_name" # should match directory structure
+
+[module]
+language = "tinygo"
+
+# api = "{{ .APIVersion }}"
+
+# [builder]
+# image = "docker.io/suborbital/scc-builder"
+# tag = "{{ .SCCVersion }}"
+
+# [subo]
+# image = "docker.io/suborbital/builder-tinygo"
+# tag = "{{ .SuboVersion }}"
