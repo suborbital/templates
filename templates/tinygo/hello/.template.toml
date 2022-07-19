@@ -1,6 +1,0 @@
-[template]
-type = "module"
-name = "tinygo/hello"
-
-[module]
-language = "tinygo"

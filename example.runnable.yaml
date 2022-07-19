@@ -1,0 +1,7 @@
+lang: tinygo
+
+# Eventually something like this may make sense.
+
+# template:
+#   type: "module"
+#   name: "tinygo/handler"
