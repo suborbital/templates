@@ -19,10 +19,12 @@ These templates would be referred to as `tinygo/hello` and `tinygo/handler`.
 ```
 tinygo
 ├── handler
+│   ├── .runnable.yaml
 │   ├── go.mod.tmpl
 │   ├── handler.go.tmpl
 │   └── main.go.tmpl
 └── hello
+    ├── .runnable.yaml
     ├── go.mod.tmpl
     └── main.go.tmpl
 ```
@@ -33,6 +35,7 @@ example
 └── deep
     └── directory
         └── hello
+            ├── .runnable.yaml
             ├── go.mod.tmpl
             └── main.go.tmpl
 ```
