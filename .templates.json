@@ -1,0 +1,29 @@
+{
+ "templates": [
+    {
+      "name": "assemblyscript",
+      "lang": "assemblyscripty",
+      "lib":  "src/lib.ts"
+    },
+    {
+      "name": "javascript",
+      "lang": "javascript",
+      "lib":"src/lib.js"
+    },
+    {
+      "name": "typescript",
+      "lang": "typescript",
+      "lib": "src/lib.ts"
+    },
+    {
+      "name": "rust",
+      "lang": "rust",
+      "lib" : "src/lib.rs"
+    },
+    {
+      "name": "tinygo",
+      "lang": "tinygo",
+      "lib": "main.go"
+    }
+  ]
+}
