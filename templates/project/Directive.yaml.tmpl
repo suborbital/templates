@@ -5,12 +5,9 @@
 identifier: {{ .Environment }}.{{ .Name }}
 appVersion: v0.1.0
 runtimeVersion: v{{ .RuntimeVersion }}
-{{ if .Headless }}headless: true{{ end }}
-{{ if not .Headless }}
 handlers:
   - type: request
     resource: /hello
     method: POST
     steps:
       - fn: helloworld
-{{ end }}
