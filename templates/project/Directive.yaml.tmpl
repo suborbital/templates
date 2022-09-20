@@ -4,7 +4,7 @@
 
 identifier: {{ .Environment }}.{{ .Name }}
 appVersion: v0.1.0
-atmoVersion: v{{ .AtmoVersion }}
+runtimeVersion: v{{ .RuntimeVersion }}
 {{ if .Headless }}headless: true{{ end }}
 {{ if not .Headless }}
 handlers:
