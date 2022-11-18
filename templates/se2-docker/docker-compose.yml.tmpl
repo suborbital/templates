@@ -1,0 +1,46 @@
+version: '3'
+services:
+  se2-controlplane:
+    image: suborbital/se2-controlplane:{{ .SE2Version }}
+    command: controlplane
+    volumes:
+      - ./:/home/se2
+    environment:
+      SE2_LOG_LEVEL: info
+      SE2_HTTP_PORT: 8081
+    env_file:
+      - SCC.env
+    ports:
+      - "8081:8081"
+    networks:
+      - se2
+
+  se2-builder:
+    image: suborbital/se2-builder:{{ .SE2Version }}
+    command: builder
+    volumes:
+      - ./:/home/se2
+    environment:
+      SE2_LOG_LEVEL: info
+      SE2_HTTP_PORT: 8082
+    ports:
+      - "8082:8082"
+    networks:
+      - se2
+
+  e2core:
+    image: suborbital/e2core:v0.5.0
+    command: e2core
+    depends_on:
+      - se2-controlplane
+    environment:
+      E2CORE_CONTROL_PLANE: "se2-controlplane:8081"
+      E2CORE_LOG_LEVEL: info
+      E2CORE_HTTP_PORT: 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - se2
+
+networks:
+    se2:
