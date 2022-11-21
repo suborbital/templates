@@ -2,54 +2,51 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: scc-controlplane-deployment
+  name: se2-controlplane-deployment
   namespace: suborbital
   labels:
-    app: scc-controlplane
+    app: se2-controlplane
 
 spec:
   replicas: 1
 
   selector:
     matchLabels:
-      app: scc-controlplane
+      app: se2-controlplane
 
   template:
     metadata:
       labels:
-        app: scc-controlplane
+        app: se2-controlplane
 
     spec:
       containers:
         - name: controlplane
-          image: suborbital/scc-control-plane:{{ .SCCVersion }}
+          image: suborbital/se2-controlplane:{{ .SE2Version }}
           command: ["controlplane"]
 
           ports:
             - containerPort: 8081
 
           env:
-            - name: SCC_HTTP_PORT
+            - name: SE2_HTTP_PORT
               value: "8081"
-            
-            - name: SCC_LOG_LEVEL
-              value: "info"
-            
-            - name: SCC_HEADLESS
-              value: "true"
 
-            - name: SCC_ENV_TOKEN
+            - name: SE2_LOG_LEVEL
+              value: "info"
+
+            - name: SE2_ENV_TOKEN
               value: {{ .EnvToken }}
-          
+
           volumeMounts:
             - name: controlplane-storage
-              mountPath: "/home/scn"
+              mountPath: "/home/se2"
             - name: controlplane-config
-              mountPath: "/home/scn/config"
+              mountPath: "/home/se2/config"
               readOnly: true
-        
+
         - name: builder
-          image: suborbital/scc-builder:{{ .SCCVersion }}
+          image: suborbital/se2-builder:{{ .SE2Version }}
           command: ["builder"]
 
           ports:
@@ -57,36 +54,39 @@ spec:
             - containerPort: 8443
 
           env:
-            - name: SCC_DOMAIN
+            - name: SE2_DOMAIN
               value: "{{ .BuilderDomain }}"
 
-            - name: SCC_TLS_PORT
+            - name: SE2_TLS_PORT
               value: "8443"
-            
-            - name: SCC_LOG_LEVEL
+
+            - name: SE2_LOG_LEVEL
               value: "info"
 
-            - name: SCC_CONTROL_PLANE
-              value: "scc-controlplane-service:8081"
-          
+            - name: SE2_CONTROL_PLANE
+              value: "se2-controlplane-service:8081"
+
           volumeMounts:
-            - mountPath: "/home/scn"
-              name: controlplane-storage
+            - name: controlplane-storage
+              mountPath: "/home/se2"
+            - name: controlplane-config
+              mountPath: "/home/se2/config"
+              readOnly: true
       initContainers:
-        - name: scc-init
+        - name: se2-init
           image: busybox
           command: ["/bin/chmod","-R","777", "/data"]
           volumeMounts:
           - name: controlplane-storage
             mountPath: /data
-      
+
       volumes:
         - name: controlplane-storage
           persistentVolumeClaim:
-            claimName: scc-controlplane-pvc
+            claimName: se2-controlplane-pvc
         - name: controlplane-config
           configMap:
-            name: scc-config
+            name: se2-config
 
 ---
 
@@ -94,7 +94,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   namespace: suborbital
-  name: scc-controlplane-pvc
+  name: se2-controlplane-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -109,10 +109,10 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: suborbital
-  name: scc-controlplane-service
+  name: se2-controlplane-service
 spec:
   selector:
-    app: scc-controlplane
+    app: se2-controlplane
   ports:
     - protocol: TCP
       port: 8081
@@ -124,10 +124,10 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: suborbital
-  name: scc-builder-service
+  name: se2-builder-service
 spec:
   selector:
-    app: scc-controlplane
+    app: se2-controlplane
   ports:
     - protocol: TCP
       name: challenge

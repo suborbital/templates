@@ -1,14 +1,14 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: scc-atmo-scaledobject
+  name: e2core-scaledobject
   namespace: suborbital
   labels:
-    app: scc-atmo
+    app: e2core
 spec:
   scaleTargetRef:
-    name: scc-atmo-deployment
-    envSourceContainerName: atmo
+    name: e2core-deployment
+    envSourceContainerName: e2core
   pollingInterval: 5
   cooldownPeriod:  30
   minReplicaCount: 1
@@ -17,5 +17,5 @@ spec:
     - type: metrics-api
       metadata:
         targetValue: "1"
-        url: "http://scc-atmo-service.suborbital.svc.cluster.local/meta/metrics"
+        url: "http://e2core-service.suborbital.svc.cluster.local/meta/metrics"
         valueLocation: "scheduler.totalThreadCount"

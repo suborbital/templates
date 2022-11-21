@@ -4,8 +4,8 @@ networkRules: &networkRules
   allowHTTP: true
   blockedDomains:
     - "*.cluster.local"
-    - "scc-controlplane-service"
-    - "scc-builder-service"
+    - "se2-controlplane-service"
+    - "se2-builder-service"
 
 capabilities:
   logger:
