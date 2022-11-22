@@ -5,38 +5,38 @@ metadata:
   name: {{ .Identifier }}-deployment
   namespace: suborbital
   labels:
-    app: atmo
+    app: e2core
 
 spec:
   replicas: 1
 
   selector:
     matchLabels:
-      app: atmo
+      app: e2core
 
   template:
     metadata:
       labels:
-        app: atmo
+        app: e2core
 
     spec:
       containers:
-        - name: atmo
+        - name: e2core
           image: {{ .ImageName }}
-          command: ["atmo"]
+          command: ["e2core"]
 
           ports:
             - containerPort: 8080
             - containerPort: 443
 
           env:
-            - name: ATMO_DOMAIN
+            - name: E2CORE_DOMAIN
               value: {{ .Domain }}
-            
-            - name: ATMO_HTTP_PORT
+
+            - name: E2CORE_HTTP_PORT
               value: "8080"
-            
-            - name: ATMO_LOG_LEVEL
+
+            - name: E2CORE_LOG_LEVEL
               value: "info"
 
             - name: APP_VERSION
