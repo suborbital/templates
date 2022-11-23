@@ -24,6 +24,7 @@ spec:
         - name: e2core
           image: {{ .ImageName }}
           command: ["e2core"]
+          args: ["start"]
 
           ports:
             - containerPort: 8080
