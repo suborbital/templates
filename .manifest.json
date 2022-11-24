@@ -1,0 +1,34 @@
+{
+    "templates": {
+        "assemblyscript": {
+            "path": "templates/assemblyscript",
+            "lang": "assemblyscript",
+            "lib": "src/lib.ts"
+        },
+        "javascript": {
+            "path": "templates/javascript",
+            "lang": "javascript",
+            "lib": "src/lib.js"
+        },
+        "typescript": {
+            "path": "templates/typescript",
+            "lang": "typescript",
+            "lib": "src/lib.ts"
+        },
+        "rust": {
+            "path": "templates/rust",
+            "lang": "rust",
+            "lib": "src/lib.rs.tmpl"
+        },
+        "tinygo": {
+            "path": "templates/tinygo",
+            "lang": "tinygo",
+            "lib": "main.go.tmpl"
+        },
+        "tinygo-handler": {
+            "path": "templates/tinygo-handler",
+            "lang": "tinygo",
+            "lib": "main.go.tmpl"
+        }
+    }
+}
