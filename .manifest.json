@@ -28,7 +28,7 @@
         "tinygo-handler": {
             "path": "templates/tinygo-handler",
             "lang": "tinygo",
-            "lib": "main.go.tmpl"
+            "lib": "handler.go.tmpl"
         }
     }
 }
