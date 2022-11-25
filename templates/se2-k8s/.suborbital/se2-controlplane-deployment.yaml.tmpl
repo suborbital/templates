@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: controlplane
-          image: suborbital/se2-controlplane:{{ .SE2Version }}
+          image: suborbital/se2-controlplane:{{ .SE2Tag }}
           command: ["controlplane"]
 
           ports:
@@ -46,7 +46,7 @@ spec:
               readOnly: true
 
         - name: builder
-          image: suborbital/se2-builder:{{ .SE2Version }}
+          image: suborbital/se2-builder:{{ .SE2Tag }}
           command: ["builder"]
 
           ports:
