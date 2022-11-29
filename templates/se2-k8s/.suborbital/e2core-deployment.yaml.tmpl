@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: e2core
-          image: suborbital/e2core:v0.5.0
+          image: suborbital/e2core:{{ .E2CoreTag }}
           command: ["e2core"]
           args: ["start"]
 

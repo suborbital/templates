@@ -1,7 +1,7 @@
 version: '3'
 services:
   se2-controlplane:
-    image: suborbital/se2-controlplane:{{ .SE2Version }}
+    image: suborbital/se2-controlplane:{{ .SE2Tag }}
     command: controlplane
     volumes:
       - ./:/home/se2
@@ -16,7 +16,7 @@ services:
       - se2
 
   se2-builder:
-    image: suborbital/se2-builder:{{ .SE2Version }}
+    image: suborbital/se2-builder:{{ .SE2Tag }}
     command: builder
     volumes:
       - ./:/home/se2
@@ -29,7 +29,7 @@ services:
       - se2
 
   e2core:
-    image: suborbital/e2core:v0.5.0
+    image: suborbital/e2core:{{ .E2CoreTag }}
     command: e2core start
     depends_on:
       - se2-controlplane
