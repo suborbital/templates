@@ -1,71 +1,55 @@
+---
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: se2-controlplane-deployment
   namespace: suborbital
   labels:
     app: se2-controlplane
-
 spec:
   replicas: 1
-
   selector:
     matchLabels:
       app: se2-controlplane
-
   template:
     metadata:
       labels:
         app: se2-controlplane
-
     spec:
       containers:
         - name: controlplane
           image: suborbital/se2-controlplane:{{ .SE2Tag }}
           command: ["controlplane"]
-
           ports:
             - containerPort: 8081
-
           env:
             - name: SE2_HTTP_PORT
               value: "8081"
-
             - name: SE2_LOG_LEVEL
               value: "info"
-
             - name: SE2_ENV_TOKEN
               value: {{ .EnvToken }}
-
           volumeMounts:
             - name: controlplane-storage
               mountPath: "/home/se2"
             - name: controlplane-config
               mountPath: "/home/se2/config"
               readOnly: true
-
         - name: builder
           image: suborbital/se2-builder:{{ .SE2Tag }}
           command: ["builder"]
-
           ports:
             - containerPort: 8080
             - containerPort: 8443
-
           env:
             - name: SE2_DOMAIN
               value: "{{ .BuilderDomain }}"
-
             - name: SE2_TLS_PORT
               value: "8443"
-
             - name: SE2_LOG_LEVEL
               value: "info"
-
             - name: SE2_CONTROL_PLANE
               value: "se2-controlplane-service:8081"
-
           volumeMounts:
             - name: controlplane-storage
               mountPath: "/home/se2"
@@ -79,7 +63,6 @@ spec:
           volumeMounts:
           - name: controlplane-storage
             mountPath: /data
-
       volumes:
         - name: controlplane-storage
           persistentVolumeClaim:
@@ -87,9 +70,7 @@ spec:
         - name: controlplane-config
           configMap:
             name: se2-config
-
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -102,9 +83,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -117,9 +96,7 @@ spec:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
