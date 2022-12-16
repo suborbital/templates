@@ -29,6 +29,18 @@ spec:
               value: "info"
             - name: SE2_ENV_TOKEN
               value: {{ .EnvToken }}
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 8081
+            failureThreshold: 5
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 8081
           volumeMounts:
             - name: controlplane-storage
               mountPath: "/home/se2"
@@ -50,6 +62,18 @@ spec:
               value: "info"
             - name: SE2_CONTROL_PLANE
               value: "se2-controlplane-service:8081"
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 8080
+            failureThreshold: 5
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 8080
           volumeMounts:
             - name: controlplane-storage
               mountPath: "/home/se2"
