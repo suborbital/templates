@@ -1,0 +1,59 @@
+name: lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  kubernetes:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        name:
+          - k8s
+          - se2-k8s
+        include:
+          - name: k8s
+            path: templates/k8s
+            vars:
+              - Identifier=E2Core
+              - ImageName=suborbital/e2core
+              - Domain=suborbital/e2core
+              - AppVersion=0.5.0
+          - name: se2-k8s
+            path: templates/se2-k8s/.suborbital
+            vars:
+              - E2CoreTag=v0.5.0
+              - SE2Tag=v0.4.2
+              - EnvToken=adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+              - BuilderDomain=https://builder.suborbital.network
+              - StorageClassName=default
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install gotpl
+        uses: engineerd/configurator@v0.0.8
+        with:
+          name: gotpl
+          pathInArchive: linux-amd64/gotpl
+          fromGitHubReleases: "true"
+          repo: belitre/gotpl
+          urlTemplate: https://github.com/belitre/gotpl/releases/download/{{version}}/gotpl-{{version}}-linux-amd64.tar.gz
+          version: latest
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install kubeconform
+        uses: engineerd/configurator@v0.0.8
+        with:
+          name: kubeconform
+          pathInArchive: kubeconform
+          fromGitHubReleases: "true"
+          repo: yannh/kubeconform
+          urlTemplate: https://github.com/yannh/kubeconform/releases/download/{{version}}/kubeconform-linux-amd64.tar.gz
+          version: latest
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: gotpl ${{ matrix.path }}/ --set ${{ join(matrix.vars, ' --set ') }} | kubeconform -ignore-missing-schemas -strict -summary
