@@ -16,5 +16,6 @@ module.exports = {
     path: path.join(__dirname, "build"),
     library: "Suborbital",
     chunkFormat: "array-push",
+    hashFunction: 'xxhash64'
   },
 };
